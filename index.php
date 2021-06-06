@@ -121,6 +121,6 @@ if(!empty($_POST)){
 
     <!-- フッター -->
     <?php require("./footer.php");?>
-    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

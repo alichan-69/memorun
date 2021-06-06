@@ -167,6 +167,10 @@ textarea:focus{
     border-bottom: 1px solid #4c65ff;
 }
 
+.counter{
+    float: right;
+}
+
 .textarea_container p{
   margin-bottom: 10px;
 }
