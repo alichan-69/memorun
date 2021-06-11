@@ -82,9 +82,10 @@ try{
             <div class="textarea_container">
                 <h1>更新</h1>
                 <form action="" method="post">
-                    <p><?php if(!empty($err["other"])){echo $err["other"];}?></p>
+                    <p><?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?></p>
                     <textarea name="memo" cols="50" rows="10"><?= sanitize($result['memo'])?></textarea><br>
-                    <p><?php if(!empty($err["memo"])){echo $err["memo"];}?></p>
+                    <p class="counter"><span class="counter_num">0</span>/255</p>
+                    <p><?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?></p>
                     <input class="update" type="submit" name="submit" value="更新"><br>
                 </form>
                 <a class="return_memo" href="./memo.php">戻る</a>
@@ -94,6 +95,7 @@ try{
     
     <!-- フッター -->
     <?php require("./footer.php"); ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

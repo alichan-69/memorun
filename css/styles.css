@@ -39,6 +39,10 @@ h2{
     font-size: 18px;
 }
 
+.error_message{
+    color: #E25150;
+}
+
 /*======================
 ヘッダー
 ========================*/
@@ -100,10 +104,6 @@ footer{
     border: none;
     outline: 0;
     border-bottom: 1px solid #4c65ff;
-}
-
-.error_message{
-    color: #E25150;
 }
 
 .form_container .login_preservation_check{

@@ -87,7 +87,7 @@ try{
           <form action="" method="post">
             <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <textarea name="memo" cols="50" rows="10"></textarea>
-            <p class="counter"><span class="stirng_num">0</span>/255</p>
+            <p class="counter"><span class="counter_num">0</span>/255</p>
             <?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
             <input type="submit" name="submit" value="登録">
           </form>
