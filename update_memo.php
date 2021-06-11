@@ -37,13 +37,16 @@ if(!empty($_POST)){
   
     if(empty($err)){
         try{
-            // メモをデータベースに登録
+            // メモをデータベースで更新
             $dbh = db_connect();
 
             $sql = "UPDATE memos SET memo = :memo,update_date = :update_date WHERE id = :memo_id AND delete_flg = :delete_flg";
             $data = [":memo" => $memo,"update_date" => date("Y-m-d H-i-s"),":memo_id" => $memo_id,":delete_flg" => false];
 
-            query_post($dbh,$sql,$data);
+            $stmt = query_post($dbh,$sql,$data);
+
+            // メモの更新成功時にでるモーダルのメッセージを発行
+            if($stmt) $_SESSION["update_memo"] = SUC_MESSAGE_2;
         }catch(Exception $e){
             $err["other"] =  ERR_MESSAGE_7;
         }
@@ -78,6 +81,7 @@ try{
 
     <!-- メイン -->
     <main>
+        <div class="modal"><p><?= get_session_flash("update_memo");?></p></div>
         <div class="site-width">
             <div class="textarea_container">
                 <h1>更新</h1>

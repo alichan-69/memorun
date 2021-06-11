@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+const SUC_MESSAGE_1 = "メモを登録しました。";
+const SUC_MESSAGE_2 = "メモを更新しました。";
+const SUC_MESSAGE_3 = "メモを削除しました。";
 const ERR_MESSAGE_1 = "必ず入力してください。";
 const ERR_MESSAGE_2 = "255文字以下で入力してください。";
 const ERR_MESSAGE_3 = "8文字以上255文字以下で入力してください。";
@@ -151,5 +154,14 @@ function pagenation($current_page_num,$total_page,$page_col_num = 5){
         echo "<li><a href='./memo.php?p=" . $max_page_num . "'>&gt;</a></li>";
     }
     echo "</div></ul>";
+}
+
+// セッションを一度だけ発行
+function get_session_flash($key){
+    if(!empty($_SESSION[$key])){
+        $data = $_SESSION[$key];
+        $_SESSION[$key] = "";
+        return $data;
+    }
 }
 ?>

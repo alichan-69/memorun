@@ -139,6 +139,14 @@ input[type="submit"]{
 /*======================
 メモ画面 
 ========================*/
+/* モーダル */
+.modal{
+    display: none;
+    padding: 10px;
+    text-align: center;
+    background: rgba(255,230,76,0.4);
+}
+
 /* テキストエリア */
 .textarea_container{
     width: 500px;
@@ -220,6 +228,11 @@ textarea:focus{
 .memo_main{
     padding: 10px;
     box-sizing: border-box;
+}
+
+.memo_main p{
+    max-height: 236px;
+    overflow: hidden;
 }
 
 /* ページネーション */

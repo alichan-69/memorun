@@ -22,7 +22,10 @@ if(!empty($_POST)){
       $sql = "INSERT INTO memos (user_id,memo,create_date,update_date) VALUE (:user_id,:memo,:create_date,:update_date)";
       $data = [":user_id" => $user_id,":memo" => $memo,":create_date" => date("Y-m-d H-i-s"),"update_date" => date("Y-m-d H-i-s")];
 
-      query_post($dbh,$sql,$data);
+      $stmt = query_post($dbh,$sql,$data);
+
+      // メモの登録成功時にでるモーダルのメッセージを発行
+      if($stmt) $_SESSION["register_memo"] = SUC_MESSAGE_1;
     }catch(Exception $e){
       $err["other"] =  ERR_MESSAGE_7;
     }
@@ -81,6 +84,7 @@ try{
 
     <!-- メイン -->
     <main>
+      <div class="modal"><p><?= get_session_flash("register_memo");?><?= get_session_flash("delete_memo");?></p></div>
       <div class="site-width">
         <div class="textarea_container">
           <h1>メモ</h1>

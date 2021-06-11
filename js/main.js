@@ -12,4 +12,12 @@ $(function(){
             counter.removeClass("error_message");
         }
     });
+
+    // メモの更新・削除時にでてくるモーダルの処理
+    let modal = $(".modal");
+
+    if(modal.text().length){
+        modal.slideToggle('slow');
+        setTimeout(function(){ modal.slideToggle('slow'); }, 5000);
+    }
 });

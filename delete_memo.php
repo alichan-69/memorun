@@ -18,6 +18,7 @@ try{
     $stmt = query_post($dbh,$sql,$data);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }catch(Exception $e){
+    $err["other"] =  ERR_MESSAGE_7;
 }
 
 // データベースのメモのuser_idがセッションのuser_idと一致するか確認する
@@ -36,8 +37,13 @@ try{
     $sql = "UPDATE memos SET delete_flg = :delete_flg WHERE id = :memo_id";
     $data = [":delete_flg" => true,":memo_id" => $memo_id];
 
-    query_post($dbh,$sql,$data);
+    $stmt = query_post($dbh,$sql,$data);
+
+    // メモの削除成功時にでるモーダルのメッセージを発行
+    if($stmt) $_SESSION["delete_memo"] = SUC_MESSAGE_3;
+
     header("Location: ./memo.php");
 }catch(Exception $e){
+    $err["other"] =  ERR_MESSAGE_7;
 }
 ?>
