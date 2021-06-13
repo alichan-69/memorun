@@ -69,12 +69,9 @@ try{
 
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>メモ更新</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
+  <!-- ヘッド   -->
+  <?php head("更新");?>
+
   <body>
     <!-- ヘッダー -->
     <?php require("./header.php"); ?>
@@ -87,10 +84,10 @@ try{
                 <h1>更新</h1>
                 <form action="" method="post">
                     <p><?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?></p>
-                    <textarea name="memo" cols="50" rows="10"><?= sanitize($result['memo'])?></textarea><br>
+                    <textarea name="memo" cols="50" rows="10"><?= sanitize($result['memo'])?></textarea>
                     <p class="counter"><span class="counter_num">0</span>/255</p>
                     <p><?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?></p>
-                    <input class="update" type="submit" name="submit" value="更新"><br>
+                    <input class="update" type="submit" name="submit" value="更新">
                 </form>
                 <a class="return_memo" href="./memo.php">戻る</a>
             </div>

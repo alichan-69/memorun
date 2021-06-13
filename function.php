@@ -164,4 +164,14 @@ function get_session_flash($key){
         return $data;
     }
 }
+
+// ヘッドを描画
+function head($title){
+    echo "<head>";
+        echo "<meta charset='utf-8'>";
+        echo "<title>" . $title ."</title>";
+        echo "<link rel='icon' href='./favicon.ico'>";
+        echo "<link rel='stylesheet' href='css/styles.css'>";
+    echo "</head>";
+}
 ?>

@@ -113,7 +113,7 @@ footer{
 input[type="submit"]{
     width: 100%;
     display: block;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     padding: 10px 5px;
     box-sizing: border-box;
     background: #4c65ff;
@@ -127,13 +127,6 @@ input[type="submit"]{
 
 .form_container a{
     color: #444;
-}
-
-/*======================
-アカウント登録画面 
-========================*/
-.form_container .account_ragistration_submit{
-    margin: 0;
 }
 
 /*======================
@@ -183,6 +176,11 @@ textarea:focus{
   margin-bottom: 10px;
 }
 
+/* 登録ボタン */
+form .register_memo{
+    margin-bottom: 60px;
+}
+
 /* メモ */
 .memos{
     margin: 0;
@@ -208,7 +206,7 @@ textarea:focus{
 }
 
 .memos_container li:nth-of-type(3n){
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 .header_memo{
@@ -232,6 +230,7 @@ textarea:focus{
 
 .memo_main p{
     max-height: 236px;
+    word-break: break-all;
     overflow: hidden;
 }
 

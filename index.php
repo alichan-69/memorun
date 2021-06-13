@@ -83,13 +83,9 @@ if(!empty($_POST)){
 
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>メモ</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
-  </head>
+  <!-- ヘッド   -->
+  <?php head("ログイン");?>
+  
   <body>
     <!-- ヘッダー -->
     <?php require("./header.php");?>
@@ -102,15 +98,14 @@ if(!empty($_POST)){
           <form action="" method="post">
             <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <p>メールアドレス</p>
-            <input type="text" name="email" value="<?php if(isset($email)){echo $email;}?>"><br>
+            <input type="text" name="email" value="<?php if(isset($email)){echo $email;}?>">
             <?php if(!empty($err["email"])){echo "<p class='error_message'>" . $err["email"] . "</p>";}?>
             <p>パスワード</p>
-            <input type="text" name="pass" value="<?php if(isset($pass)){echo $pass;}?>"><br>
+            <input type="text" name="pass" value="<?php if(isset($pass)){echo $pass;}?>">
             <?php if(!empty($err["pass"])){echo "<p class='error_message'>" . $err["pass"] . "</p>";}?>
             <div class="login_preservation_check">
               <input type="checkbox" name="login_preservation" value="true" checked="checked">
               自動でログイン
-              <br>
             </div>
             <input type="submit" name="submit" value="ログイン">
           </form>
@@ -121,6 +116,5 @@ if(!empty($_POST)){
 
     <!-- フッター -->
     <?php require("./footer.php");?>
-    <script src="js/index.js"></script>
   </body>
 </html>

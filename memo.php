@@ -72,12 +72,9 @@ try{
 
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>メモ</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
+  <!-- ヘッド   -->
+  <?php head("メモ");?>
+
   <body>
     <!-- ヘッダー -->
     <?php require("./header.php"); ?>
@@ -93,7 +90,7 @@ try{
             <textarea name="memo" cols="50" rows="10"></textarea>
             <p class="counter"><span class="counter_num">0</span>/255</p>
             <?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
-            <input type="submit" name="submit" value="登録">
+            <input type="submit" class="register_memo" name="submit" value="登録">
           </form>
         </div>
         <ul class="memos">

@@ -54,8 +54,6 @@ if(!empty($_POST)){
 
       $stmt = query_post($dbh,$sql,$data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      var_dump($result);
       
       // ログイン時刻のセッションを発行
       $_SESSION["login_date"] = time();
@@ -63,6 +61,7 @@ if(!empty($_POST)){
       $_SESSION["login_date_limit"] = $_SESSION["login_date"] + 30 * 24 * 60 * 60;
       // ユーザーIDのセッションを発行
       $_SESSION["user_id"] = $result["id"];
+
       header("Location: memo.php");
     }catch(Exception $e){
       $err["other"] =  ERR_MESSAGE_7;
@@ -73,15 +72,9 @@ if(!empty($_POST)){
 
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>メモ</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
-    <!-- index.cssと共通する部分以外のスタイルを追加 -->
-    <link rel="stylesheet" href="css/account_ragistration.css">
-  </head>
+  <!-- ヘッド   -->
+  <?php head("アカウント登録");?>
+
   <body>
     <!-- ヘッダー -->
     <?php require("./header.php");?>
@@ -94,15 +87,15 @@ if(!empty($_POST)){
           <form action="" method="post">
             <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <p>メールアドレス</p>
-            <input type="text" name="email" value="<?php if(isset($email)){echo $email;}?>"><br>
+            <input type="text" name="email" value="<?php if(isset($email)){echo $email;}?>">
             <?php if(!empty($err["email"])){echo "<p class='error_message'>" . $err["email"] . "</p>";}?>
             <p>パスワード</p>
-            <input type="text" name="pass" value="<?php if(isset($pass)){echo $pass;}?>"><br>
+            <input type="text" name="pass" value="<?php if(isset($pass)){echo $pass;}?>">
             <?php if(!empty($err["pass"])){echo "<p class='error_message'>" . $err["pass"] . "</p>";}?>
             <p>パスワード再入力</p>
-            <input type="text" name="pass_re" value="<?php if(isset($pass_re)){echo $pass_re;}?>"><br>
+            <input type="text" name="pass_re" value="<?php if(isset($pass_re)){echo $pass_re;}?>">
             <?php if(!empty($err["pass_re"])){echo "<p class='error_message'>" . $err["pass_re"] . "</p>";}?>
-            <input type="submit" name="submit" value="登録" class="account_ragistration_submit"><br>
+            <input type="submit" name="submit" value="登録" class="account_registration_submit">
           </form>
           <a href="index.php">戻る</a>
         </div>
@@ -111,6 +104,5 @@ if(!empty($_POST)){
 
     <!-- フッター -->
     <?php require("./footer.php");?>
-    <script src="js/main.js"></script>
   </body>
 </html>
