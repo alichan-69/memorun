@@ -151,6 +151,7 @@ input[type="submit"]{
 }
 
 textarea{
+    resize: none;
     width: 500px;
     height: 200px;
     margin-bottom: 10px;
@@ -224,14 +225,11 @@ form .register_memo{
 }
 
 .memo_main{
+    resize: none;
+    width: 300px;
+    height: 256px;
+    margin-bottom: 0;
     padding: 10px;
-    box-sizing: border-box;
-}
-
-.memo_main p{
-    max-height: 236px;
-    word-break: break-all;
-    overflow: hidden;
 }
 
 /* ページネーション */

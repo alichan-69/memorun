@@ -6,8 +6,8 @@ require("./function.php");
 login_auth();
 
 $user_id = $_SESSION["user_id"];
-// メモの生成
-if(!empty($_POST)){
+// メモの登録
+if(!empty($_POST["register"])){
   $memo = $_POST["memo"];
 
   // バリデーションチェック
@@ -90,7 +90,7 @@ try{
             <textarea name="memo" cols="50" rows="10"></textarea>
             <p class="counter"><span class="counter_num">0</span>/255</p>
             <?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
-            <input type="submit" class="register_memo" name="submit" value="登録">
+            <input type="submit" class="register_memo" name="register" value="メモる">
           </form>
         </div>
         <ul class="memos">
@@ -102,9 +102,8 @@ try{
                 <a class="delete_memo" href="./delete_memo.php?id=<?=$result['id']; ?>">削除</a>                  
                 <span><?=$result["update_date"] ?></span>
               </div>
-              <div class="memo_main">
-                <p><?=sanitize($result["memo"]); ?></p>
-              </div>
+              <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
+              <textarea class="memo_main"><?=sanitize($result["memo"]); ?></textarea>
             </li>
             <?php endforeach?>
           </div>
