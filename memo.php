@@ -32,6 +32,12 @@ if(!empty($_POST["register"])){
   }
 }
 
+// メモの更新
+require("./update_memo.php");
+
+// メモの削除
+require("./delete_memo.php");
+
 // ページネーション処理
 // urlから現在のページを取得
 $current_page_num = (!empty($_GET["p"])) ? $_GET["p"] : 1;
@@ -44,7 +50,7 @@ try{
   $dbh = db_connect();
 
   // メモの総数を取得
-  $sql = "SELECT id,memo,update_date FROM memos WHERE user_id = :user_id AND delete_flg = :delete_flg ORDER BY update_date DESC";
+  $sql = "SELECT id,memo,create_date FROM memos WHERE user_id = :user_id AND delete_flg = :delete_flg ORDER BY create_date DESC";
   $data = [":user_id" => $user_id,":delete_flg" => false];
 
   $stmt = query_post($dbh,$sql,$data);
@@ -81,11 +87,11 @@ try{
 
     <!-- メイン -->
     <main>
-      <div class="modal"><p><?= get_session_flash("register_memo");?><?= get_session_flash("delete_memo");?></p></div>
+      <div class="modal"><p><?= get_session_flash("register_memo");?><?= get_session_flash("update_memo");?><?= get_session_flash("delete_memo");?></p></div>
       <div class="site-width">
         <div class="textarea_container">
           <h1>メモ</h1>
-          <form action="" method="post">
+          <form method="post" action="./memo.php?p=<?= $current_page_num;?>" >
             <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <textarea name="memo" cols="50" rows="10"></textarea>
             <p class="counter"><span class="counter_num">0</span>/255</p>
@@ -97,13 +103,16 @@ try{
           <div class="memos_container">
             <?php foreach($results as $result):?>
             <li>
-              <div class="header_memo">
-                <a class="update_memo" href="./update_memo.php?id=<?=$result['id']; ?>">更新</a>
-                <a class="delete_memo" href="./delete_memo.php?id=<?=$result['id']; ?>">削除</a>                  
-                <span><?=$result["update_date"] ?></span>
-              </div>
-              <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
-              <textarea class="memo_main"><?=sanitize($result["memo"]); ?></textarea>
+              <form method="post" action="./memo.php?id=<?=$result['id']; ?>&p=<?= $current_page_num;?>">
+                <div class="header_memo">
+                  <input type="submit" name="update" value="更新" class="update_memo">
+                  <input type="submit" name="delete" value="削除" class="delete_memo">
+                  <span><?=$result["create_date"] ?></span>
+                </div>
+                <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
+                <textarea class="memo_main" name="update_memo"><?=sanitize($result["memo"]); ?></textarea>
+              </form>
+              <?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
             </li>
             <?php endforeach?>
           </div>
