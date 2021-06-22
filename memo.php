@@ -7,7 +7,7 @@ login_auth();
 
 $user_id = $_SESSION["user_id"];
 // メモの登録
-if(!empty($_POST["register"])){
+if(isset($_POST["register"])){
   $memo = $_POST["memo"];
 
   // バリデーションチェック
@@ -58,7 +58,7 @@ try{
   // メモの総数からページの総数を取得;
   $total_page = ceil($total_num / $list_span); 
 
-  // 現在表示するメモを取得
+  // メモの表示
   $sql .= " LIMIT " . $list_span . " OFFSET " . $current_min_num;
   $data = [":user_id" => $user_id,":delete_flg" => false];
 
@@ -92,13 +92,19 @@ try{
         <div class="textarea_container">
           <h1>メモ</h1>
           <form method="post" action="./memo.php?p=<?= $current_page_num;?>" >
-            <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
+            <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
             <textarea name="memo" cols="50" rows="10"></textarea>
             <p class="counter"><span class="counter_num">0</span>/255</p>
-            <?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
+            <!-- メモが更新された時にもエラーメッセージが出るのでpostされたsubmitのnameのよってエラーメッセージを出すか場合分けする -->
+            <?php if(!empty($err["memo"]) && isset($_POST["register"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
+            <?php if(!empty($err["other"])  && isset($_POST["register"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <input type="submit" class="register_memo" name="register" value="メモる">
           </form>
         </div>
+        <form class="search_container">
+          <input name="search_word" type="text">
+          <input type="submit" name="search" value="検索">
+        </form>
         <ul class="memos">
           <div class="memos_container">
             <?php foreach($results as $result):?>
@@ -109,10 +115,13 @@ try{
                   <input type="submit" name="delete" value="削除" class="delete_memo">
                   <span><?=$result["create_date"] ?></span>
                 </div>
-                <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
                 <textarea class="memo_main" name="update_memo"><?=sanitize($result["memo"]); ?></textarea>
+                <p class="counter"><span class="counter_num">0</span>/255</p>
               </form>
-              <?php if(!empty($err["memo"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
+              <!-- メモが登録された時、他のメモが更新された時にもエラーメッセージが出るのでpostされたsubmitのnameとurlで送信されたメモのidによって
+              エラーメッセージを出すか場合分けする -->
+              <?php if(!empty($err["memo"]) && $_GET["id"] === $result['id']){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
+              <?php if(!empty($err["other"])  && $_GET["id"] === $result['id']){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             </li>
             <?php endforeach?>
           </div>

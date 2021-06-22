@@ -1,6 +1,6 @@
 <!-- メモ削除ページ -->
 <?php
-if(!empty($_POST["delete"])){
+if(isset($_POST["delete"])){
     $memo_id = $_GET["id"];
 
     // データベースのメモのuser_idを取得

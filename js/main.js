@@ -1,12 +1,11 @@
 $(function(){
-    // カウンターの処理
-    let textarea = $("textarea[name='memo']");
-    let counter = $(".counter");
-    let counter_num = $(".counter_num");
-    
-    textarea.keyup(function(){
-        counter_num.text(textarea.val().length);
-        if(textarea.val().length > 255){
+    // 文字カウンターの処理
+    $("textarea").keyup(function(){
+        let counter = $(this).siblings(".counter");
+        let counter_num = counter.children(".counter_num");
+
+        counter_num.text($(this).val().length);
+        if($(this).val().length > 255){
             counter.addClass("error_message");
         }else{
             counter.removeClass("error_message");
