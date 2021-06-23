@@ -172,6 +172,7 @@ function head($title){
         echo "<title>" . $title ."</title>";
         echo "<link rel='icon' href='./favicon.ico'>";
         echo "<link rel='stylesheet' href='css/styles.css'>";
+        echo "<link href='https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap' rel='stylesheet'>";
     echo "</head>";
 }
 ?>

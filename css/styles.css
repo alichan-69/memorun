@@ -9,6 +9,7 @@ body{
     flex-flow: column;
     min-height: 100vh;
     /* footer最下部に固定 */
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: #444;
     background: #e8e8e8;
@@ -47,17 +48,44 @@ h2{
 ヘッダー
 ========================*/
 header{
-    padding: 30px;
+    position: relative;
     box-sizing: border-box;
     background: #4c65ff;
 }
 
+.header_block{
+    /* 台形 */
+    width: 20%; /* 幅 */
+	height: 0px; /* y位置 */
+	border-top: 92px solid #ffe64c; /* 高さ */
+	border-left: 0px solid transparent; /* 左側の角度 */
+	border-right: 90px solid transparent; /* 右側の角度 */
+}
+
+.header_block_content{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+header img{
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+}
+
 header a{
+    display: flex;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
 }
 
+header h1{
+    margin-top: 3px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 24px;
+}
 /*======================
 フッター
 ========================*/
