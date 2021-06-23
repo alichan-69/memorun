@@ -6,6 +6,7 @@ require("./function.php");
 login_auth();
 
 $user_id = $_SESSION["user_id"];
+
 // メモの登録
 if(isset($_POST["register"])){
   $memo = $_POST["memo"];
@@ -52,10 +53,14 @@ try{
   // ページの総数を取得
   // 表示するメモの総数を取得
   $sql = "SELECT id,memo,create_date FROM memos WHERE user_id = :user_id AND delete_flg = :delete_flg";
+  // 検索が使用されていた時は検索ワードをセッションに格納する
+  if(isset($_POST["search_word"])) $_SESSION["search_word"] = $_POST["search_word"];
+  // 全て表示が使用されていた場合は検索ワードのセッションを空にする
+  if(isset($_POST["display_all"])) $_SESSION["search"] = false; 
   // 検索が使用されていた時はlike文を加えてメモを絞る
-  if(isset($_POST["search"])){
+  if(isset($_SESSION["search_word"]) && $_SESSION["search_word"]){
     $sql .= " AND memo LIKE :search_word";
-    $data = [":user_id" => $user_id,":delete_flg" => false,":search_word" => "%" . $_POST["search_word"] . "%"];
+    $data = [":user_id" => $user_id,":delete_flg" => false,":search_word" => "%" . $_SESSION["search_word"] . "%"];
   }else{
     $data = [":user_id" => $user_id,":delete_flg" => false];
   }
@@ -99,7 +104,7 @@ try{
       <div class="site-width">
         <div class="textarea_container">
           <h1>メモ</h1>
-          <form method="post" action="./memo.php?p=<?= $current_page_num;?>" >
+          <form method="post" action="./memo.php" >
             <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
             <textarea name="memo" cols="50" rows="10"></textarea>
             <p class="counter"><span class="counter_num">0</span>/255</p>
