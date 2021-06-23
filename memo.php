@@ -45,22 +45,30 @@ $current_page_num = (!empty($_GET["p"])) ? $_GET["p"] : 1;
 $list_span = 6;
 // 現在の表示メモの先頭を算出
 $current_min_num = (($current_page_num - 1) * $list_span);
-// DBからメモの総数と現在表示するメモを取得
+// DBからページの総数と各ページで表示するメモを取得
 try{
   $dbh = db_connect();
 
-  // メモの総数を取得
-  $sql = "SELECT id,memo,create_date FROM memos WHERE user_id = :user_id AND delete_flg = :delete_flg ORDER BY create_date DESC";
-  $data = [":user_id" => $user_id,":delete_flg" => false];
+  // ページの総数を取得
+  // 表示するメモの総数を取得
+  $sql = "SELECT id,memo,create_date FROM memos WHERE user_id = :user_id AND delete_flg = :delete_flg";
+  // 検索が使用されていた時はlike文を加えてメモを絞る
+  if(isset($_POST["search"])){
+    $sql .= " AND memo LIKE :search_word";
+    $data = [":user_id" => $user_id,":delete_flg" => false,":search_word" => "%" . $_POST["search_word"] . "%"];
+  }else{
+    $data = [":user_id" => $user_id,":delete_flg" => false];
+  }
+  $sql .= " ORDER BY create_date DESC";
 
   $stmt = query_post($dbh,$sql,$data);
   $total_num = $stmt->rowCount();
-  // メモの総数からページの総数を取得;
+
+  // 表示するメモの総数からページの総数を取得;
   $total_page = ceil($total_num / $list_span); 
 
-  // メモの表示
+  // 各ページで表示するメモの取得
   $sql .= " LIMIT " . $list_span . " OFFSET " . $current_min_num;
-  $data = [":user_id" => $user_id,":delete_flg" => false];
 
   $stmt = query_post($dbh,$sql,$data);
 
@@ -101,9 +109,10 @@ try{
             <input type="submit" class="register_memo" name="register" value="メモる">
           </form>
         </div>
-        <form class="search_container">
+        <form method="post" action="./memo.php" class="search_container">
           <input name="search_word" type="text">
           <input type="submit" name="search" value="検索">
+          <input type="submit" name="display_all" value="全て表示">
         </form>
         <ul class="memos">
           <div class="memos_container">
@@ -119,7 +128,7 @@ try{
                 <p class="counter"><span class="counter_num">0</span>/255</p>
               </form>
               <!-- メモが登録された時、他のメモが更新された時にもエラーメッセージが出るのでpostされたsubmitのnameとurlで送信されたメモのidによって
-              エラーメッセージを出すか場合分けする -->
+              各エラーメッセージを出すか場合分けする -->
               <?php if(!empty($err["memo"]) && $_GET["id"] === $result['id']){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
               <?php if(!empty($err["other"])  && $_GET["id"] === $result['id']){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             </li>
