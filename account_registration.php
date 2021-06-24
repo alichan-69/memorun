@@ -87,15 +87,15 @@ if(!empty($_POST)){
           <form action="" method="post">
             <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <p>メールアドレス</p>
-            <input type="text" name="email" value="<?php if(isset($email)){echo $email;}?>">
+            <input type="text" spellcheck="false" name="email" value="<?php if(isset($email)){echo $email;}?>">
             <?php if(!empty($err["email"])){echo "<p class='error_message'>" . $err["email"] . "</p>";}?>
-            <p>パスワード</p>
-            <input type="text" name="pass" value="<?php if(isset($pass)){echo $pass;}?>">
+            <p class="pass">パスワード</p>
+            <input type="text" spellcheck="false" name="pass" value="<?php if(isset($pass)){echo $pass;}?>">
             <?php if(!empty($err["pass"])){echo "<p class='error_message'>" . $err["pass"] . "</p>";}?>
-            <p>パスワード再入力</p>
-            <input type="text" name="pass_re" value="<?php if(isset($pass_re)){echo $pass_re;}?>">
+            <p class="pass_re">パスワード再入力</p>
+            <input type="text" spellcheck="false" name="pass_re" value="<?php if(isset($pass_re)){echo $pass_re;}?>">
             <?php if(!empty($err["pass_re"])){echo "<p class='error_message'>" . $err["pass_re"] . "</p>";}?>
-            <input type="submit" name="submit" value="登録" class="account_registration_submit">
+            <input type="submit" class="important_submit account_registration_submit" name="submit" value="登録" class="account_registration_submit">
           </form>
           <a href="index.php">戻る</a>
         </div>

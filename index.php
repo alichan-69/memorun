@@ -20,7 +20,7 @@ if(isset($_SESSION["login_preservation"]) && $_SESSION["login_preservation"]){
 if(!empty($_POST)){
   $email = $_POST["email"];
   $pass = $_POST["pass"];
-  $login_preservation = $_POST["login_preservation"];
+  if(isset($_POST["login_preservation"])) $login_preservation = $_POST["login_preservation"];
 
   // バリデーションチェック
   // emailチェック
@@ -92,26 +92,30 @@ if(!empty($_POST)){
 
     <!-- メイン -->
     <main>
+      <div class="main_background_design_block_1"></div>
+      <div class="main_background_design_block_2"></div>
       <div class="site-width">
         <div class="form_container">
           <h1>ログイン</h1>
           <form action="" method="post">
             <?php if(!empty($err["other"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
             <p>メールアドレス</p>
-            <input type="text" name="email" value="<?php if(isset($email)){echo $email;}?>">
+            <input type="text" spellcheck="false" name="email" value="<?php if(isset($email)){echo $email;}?>">
             <?php if(!empty($err["email"])){echo "<p class='error_message'>" . $err["email"] . "</p>";}?>
-            <p>パスワード</p>
-            <input type="text" name="pass" value="<?php if(isset($pass)){echo $pass;}?>">
+            <p class="pass">パスワード</p>
+            <input type="text" spellcheck="false" name="pass" value="<?php if(isset($pass)){echo $pass;}?>">
             <?php if(!empty($err["pass"])){echo "<p class='error_message'>" . $err["pass"] . "</p>";}?>
             <div class="login_preservation_check">
-              <input type="checkbox" name="login_preservation" value="true" checked="checked">
-              自動でログイン
+              <input type="checkbox" id="login_preservation" name="login_preservation" checked="checked">
+              <label for="login_preservation" class="login_preservation">自動でログイン</label>
             </div>
-            <input type="submit" name="submit" value="ログイン">
+            <input type="submit" class="important_submit" name="submit" value="ログイン">
           </form>
           <p class="no_account">アカウントを作成されていない方は<a href="./account_registration.php">こちら</a></p>
         </div>
       </div>
+      <div class="main_background_design_block_3"></div>
+      <div class="main_background_design_block_4"></div>
     </main>
 
     <!-- フッター -->

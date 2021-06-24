@@ -106,18 +106,20 @@ try{
           <h1>メモ</h1>
           <form method="post" action="./memo.php" >
             <!-- テキストエリアはタグ内の文字列をそのまま表示するため改行はいれないこと -->
-            <textarea name="memo" cols="50" rows="10"></textarea>
+            <textarea name="memo" spellcheck="false" cols="50" rows="10"></textarea>
             <p class="counter"><span class="counter_num">0</span>/255</p>
             <!-- メモが更新された時にもエラーメッセージが出るのでpostされたsubmitのnameのよってエラーメッセージを出すか場合分けする -->
             <?php if(!empty($err["memo"]) && isset($_POST["register"])){echo "<p class='error_message'>" . $err["memo"] . "</p>";}?>
             <?php if(!empty($err["other"])  && isset($_POST["register"])){echo "<p class='error_message'>" . $err["other"] . "</p>";}?>
-            <input type="submit" class="register_memo" name="register" value="メモる">
+            <input type="submit" class="important_submit register_memo" name="register" value="メモる">
           </form>
         </div>
-        <form method="post" action="./memo.php" class="search_container">
-          <input name="search_word" type="text">
-          <input type="submit" name="search" value="検索">
-          <input type="submit" name="display_all" value="全て表示">
+        <form method="post" action="./memo.php">
+          <input name="search_word" type="text" spellcheck="false">
+          <div  class="search_container">
+            <input type="submit" name="search" value="検索">
+            <input type="submit" name="display_all" value="全て表示">
+          </div>
         </form>
         <ul class="memos">
           <div class="memos_container">
@@ -129,7 +131,7 @@ try{
                   <input type="submit" name="delete" value="削除" class="delete_memo">
                   <span><?=$result["create_date"] ?></span>
                 </div>
-                <textarea class="memo_main" name="update_memo"><?=sanitize($result["memo"]); ?></textarea>
+                <textarea class="memo_main" name="update_memo" spellcheck="false"><?=sanitize($result["memo"]); ?></textarea>
                 <p class="counter"><span class="counter_num">0</span>/255</p>
               </form>
               <!-- メモが登録された時、他のメモが更新された時にもエラーメッセージが出るのでpostされたsubmitのnameとurlで送信されたメモのidによって
