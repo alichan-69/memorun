@@ -102,6 +102,16 @@ try{
     <main>
       <div class="modal"><p><?= get_session_flash("register_memo");?><?= get_session_flash("update_memo");?><?= get_session_flash("delete_memo");?></p></div>
       <div class="site-width">
+        <div class="search_container">
+          <h2>メモを検索</h2>
+          <form method="post" action="./memo.php">
+            <input name="search_word" type="text" spellcheck="false">
+            <div  class="search_submit_container">
+              <input type="submit" name="search" value="検索">
+              <input type="submit" name="display_all" value="全て表示">
+            </div>
+          </form>
+        </div>
         <div class="textarea_container">
           <h1>メモ</h1>
           <form method="post" action="./memo.php" >
@@ -114,13 +124,6 @@ try{
             <input type="submit" class="important_submit register_memo" name="register" value="メモる">
           </form>
         </div>
-        <form method="post" action="./memo.php">
-          <input name="search_word" type="text" spellcheck="false">
-          <div  class="search_container">
-            <input type="submit" name="search" value="検索">
-            <input type="submit" name="display_all" value="全て表示">
-          </div>
-        </form>
         <ul class="memos">
           <div class="memos_container">
             <?php foreach($results as $result):?>
@@ -143,7 +146,6 @@ try{
           </div>
         </ul>
         <?php pagenation($current_page_num,$total_page)?>
-        <a class="logout" href="./logout.php">ログアウト</a>
       </div>
     </main>
 

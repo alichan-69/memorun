@@ -89,6 +89,15 @@ header h1{
     color: #4c65ff;
     font-family: 'Courier Prime', monospace;
 }
+
+
+.logout{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    text-decoration: underline;
+}
 /*======================
 フッター
 ========================*/
@@ -110,7 +119,7 @@ footer{
     box-sizing: border-box;
     background: #fff;
     display: block;
-    margin: 30px auto;
+    margin: 60px auto;
 }
 
 .form_container h1{
@@ -289,23 +298,31 @@ form .register_memo{
 }
 
 /* 検索ボックス */
+.search_container{
+    margin-top: 30px;
+}
+
+.search_container h2{
+    margin-bottom: 10px;
+}
+
 input[name="search_word"]{
     width: 300px;
     margin-right: 30px;
     margin-bottom: 30px;
 }
 
-.search_container{
+.search_submit_container{
     display: flex;
     margin-bottom: 30px;
 }
 
-.search_container input[type="submit"]{
+.search_submit_container input[type="submit"]{
     width: 145px;
     margin-bottom: 0;
 }
 
-.search_container input[name="search"]{
+.search_submit_container input[name="search"]{
     margin-right: 10px;
 }
 
@@ -407,11 +424,6 @@ ul .memos_container{
 .current_page > a{
     background: #4c65ff;
     color: #fff;
-}
-
-/* ログアウト */
-.logout{
-    color: #444;
 }
 
 /*======================

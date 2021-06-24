@@ -23,9 +23,9 @@ $(function(){
 
     // メモを表示するエリア周辺のスタイルを表示するメモの数ごとに変える処理
     let memo_size = $(".memos_container > li").length;
-    let search_container = $(".search_container");
+    let pagenation = $(".pagenation");
     if(memo_size === 0){
-        search_container.css("margin-bottom","0");
+        pagenation.css("display","none");
     }
 
     // メモの更新・削除時にでてくるモーダルの処理
