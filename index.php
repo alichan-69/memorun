@@ -92,8 +92,6 @@ if(!empty($_POST)){
 
     <!-- メイン -->
     <main>
-      <div class="main_background_design_block_1"></div>
-      <div class="main_background_design_block_2"></div>
       <div class="site-width">
         <div class="form_container">
           <h1>ログイン</h1>
@@ -114,8 +112,6 @@ if(!empty($_POST)){
           <p class="no_account">アカウントを作成されていない方は<a href="./account_registration.php">こちら</a></p>
         </div>
       </div>
-      <div class="main_background_design_block_3"></div>
-      <div class="main_background_design_block_4"></div>
     </main>
 
     <!-- フッター -->
