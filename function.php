@@ -66,8 +66,8 @@ function valid_equal_value($post1,$post2,$err_key){
 // db接続
 function db_connect(){
     $dsn = "mysql:dbname=memo;host=localhost;charset=utf8";
-    $user = 'test';
-    $pass = 'test';
+    $user = 'root';
+    $pass = '';
     $options = [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
