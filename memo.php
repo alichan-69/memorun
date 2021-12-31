@@ -101,7 +101,7 @@ try{
     <!-- メイン -->
     <main>
       <div class="modal"><p><?= get_session_flash("register_memo");?><?= get_session_flash("update_memo");?><?= get_session_flash("delete_memo");?></p></div>
-      <div class="site-width">
+      <div class="site-memo-width">
         <div class="search_container">
           <h2>メモを検索</h2>
           <form method="post" action="./memo.php">
