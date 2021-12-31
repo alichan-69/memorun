@@ -62,7 +62,7 @@ if(!empty($_POST)){
       // ユーザーIDのセッションを発行
       $_SESSION["user_id"] = $result["id"];
 
-      header("Location: memo.php");
+      header("Location: ./memo.php");
     }catch(Exception $e){
       $err["other"] =  ERR_MESSAGE_7;
     }
