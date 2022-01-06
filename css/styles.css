@@ -131,6 +131,8 @@ input[type="text"] {
   font-size: 16px;
   border: none;
   border-bottom: 1px solid #444;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 input[type="text"]:-webkit-autofill {
@@ -213,6 +215,8 @@ input[type="submit"] {
   background: #4c65ff;
   color: #fff;
   border: none;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 .form_container .important_submit {
@@ -277,6 +281,8 @@ textarea {
   line-height: 150%;
   border: none;
   border-bottom: 1px solid #444;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 textarea:focus {
