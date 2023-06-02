@@ -1,0 +1,505 @@
+/*======================
+共通スタイル
+========================*/
+body {
+  margin: 0;
+  padding: 0;
+  /* footer最下部に固定 */
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  /* footer最下部に固定 */
+  font-family: "游ゴシック", "ヒラギノ角ゴシック", sans-serif;
+  font-size: 16px;
+  color: #444;
+  background: #e8e8e8;
+  line-height: 150%;
+}
+
+/* footer最下部に固定 */
+main {
+  flex: 1;
+}
+/* footer最下部に固定 */
+
+.site-width {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  width: 780px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.error_message {
+  color: #e25150;
+}
+
+/*======================
+ヘッダー
+========================*/
+header {
+  position: relative;
+  box-sizing: border-box;
+  background: #ffe64c;
+  height: 84px;
+}
+
+.header_block_content {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+header img {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+header a {
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+header h1 {
+  margin-top: 3px;
+  font-size: 30px;
+  color: #4c65ff;
+  font-family: "Courier Prime", monospace;
+}
+
+.logout {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #fff;
+  text-decoration: underline;
+}
+/*======================
+フッター
+========================*/
+footer {
+  padding: 30px;
+  box-sizing: border-box;
+  background: #4c65ff;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+/*======================
+ログイン画面 
+========================*/
+.form_container {
+  width: 450px;
+  padding: 60px;
+  box-sizing: border-box;
+  background: #fff;
+  display: block;
+  margin: 60px auto;
+}
+
+.form_container h1 {
+  margin-bottom: 30px;
+}
+
+input[type="text"] {
+  width: 350px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: "游ゴシック", "ヒラギノ角ゴシック", sans-serif;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #444;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+input[type="text"]:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #fff inset;
+}
+
+input[type="text"]:focus {
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #4c65ff;
+}
+
+.form_container .error_message {
+  margin-top: 10px;
+}
+
+.pass,
+.pass_re {
+  margin-top: 30px;
+}
+
+.form_container .login_preservation_check {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* チェックボックスのデザイン */
+input[type="checkbox"] {
+  display: none;
+}
+
+.login_preservation {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 30px;
+  position: relative;
+  width: auto;
+}
+
+.login_preservation::before {
+  background: #fff;
+  border: 1px solid #231815;
+  content: "";
+  display: block;
+  height: 16px;
+  left: 5px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  width: 16px;
+}
+
+.login_preservation::after {
+  border-right: 3px solid #4c65ff;
+  border-bottom: 3px solid #4c65ff;
+  content: "";
+  display: block;
+  height: 9px;
+  left: 10px;
+  margin-top: -7px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 5px;
+}
+
+input[type="checkbox"]:checked + .login_preservation::after {
+  opacity: 1;
+}
+/* チェックボックスのデザイン */
+
+input[type="submit"] {
+  width: 100%;
+  display: block;
+  margin-bottom: 30px;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  background: #4c65ff;
+  color: #fff;
+  border: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.form_container .important_submit {
+  background: #ffe64c;
+  color: #444;
+}
+
+.form_container .no_account {
+  margin: 0;
+}
+
+.form_container a {
+  color: #444;
+}
+
+/*======================
+アカウント登録画面 
+========================*/
+.account_registration_submit {
+  margin-top: 30px;
+}
+
+/*======================
+メモ画面 
+========================*/
+/* 全体 */
+.site-memo-width {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  width: 980px;
+}
+
+/* モーダル */
+.modal {
+  display: none;
+  padding: 10px;
+  text-align: center;
+  background: rgba(255, 230, 76, 0.4);
+}
+
+/* テキストエリア */
+.textarea_container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.textarea_container h1 {
+  margin: 30px 0;
+}
+
+textarea {
+  display: block;
+  resize: none;
+  width: 500px;
+  height: 200px;
+  margin-bottom: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "游ゴシック", "ヒラギノ角ゴシック", sans-serif;
+  font-size: 18px;
+  line-height: 150%;
+  border: none;
+  border-bottom: 1px solid #444;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+textarea:focus {
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #4c65ff;
+}
+
+.counter {
+  float: right;
+}
+
+.textarea_container p {
+  margin-bottom: 10px;
+}
+
+/* メモるボタン */
+form .register_memo {
+  margin-bottom: 60px;
+}
+
+.textarea_container .important_submit {
+  background: #ffe64c;
+  color: #444;
+}
+
+/* 検索ボックス */
+.search_container {
+  margin-top: 30px;
+}
+
+.search_container h2 {
+  margin-bottom: 10px;
+}
+
+input[name="search_word"] {
+  width: 300px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.search_submit_container {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.search_submit_container input[type="submit"] {
+  width: 145px;
+  margin-bottom: 0;
+}
+
+.search_submit_container input[name="search"] {
+  margin-right: 10px;
+}
+
+/* メモ */
+.memos {
+  width: 980px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul .memos_container {
+  width: 980px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  overflow: hidden;
+}
+
+.memos_container li {
+  width: 300px;
+  margin-right: 30px;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.memos_container li:nth-of-type(3n) {
+  margin-right: 0;
+}
+
+.memos_container form {
+  margin-bottom: 10px;
+}
+
+.header_memo {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #4c65ff;
+  color: #fff;
+}
+
+.header_memo .update_memo,
+.header_memo .delete_memo {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  text-decoration: underline;
+  box-sizing: border-box;
+  background: #4c65ff;
+  color: #fff;
+  border: none;
+}
+
+.memo_main {
+  resize: none;
+  width: 300px;
+  height: 256px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.memos_container .error_message {
+  clear: right;
+}
+
+/* ページネーション */
+.pagenation {
+  margin-top: 0;
+  margin-bottom: 60px;
+  padding: 0;
+}
+
+.pagenation_flex_container {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.pagenation a {
+  display: block;
+  width: 30px;
+  height: 46px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #444;
+  border-right: none;
+  text-decoration: none;
+  background: #fff;
+  color: #444;
+}
+
+.pagenation li:last-child > a {
+  border-right: 1px solid #444;
+}
+
+.current_page > a {
+  background: #4c65ff;
+  color: #fff;
+}
+
+/*======================
+更新画面
+========================*/
+.textarea_container .update {
+  margin-bottom: 30px;
+}
+
+.return_memo {
+  color: #444;
+}
+
+/*======================
+レスポンシブデザイン
+========================*/
+@media screen and (max-width: 980px) {
+  /*======================
+  メモ画面 
+  ========================*/
+  /* 全体 */
+  .site-memo-width {
+    width: 320px;
+  }
+  /* テキストエリア */
+  .textarea_container {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  textarea {
+    width: 300px;
+  }
+  /* メモ */
+  .memos {
+    width: 300px;
+    margin: 0 auto;
+  }
+  ul .memos_container {
+    display: block;
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /*======================
+  共通スタイル
+  ========================*/
+  .site-width {
+    width: 320px;
+  }
+
+  /*======================
+  ログイン画面 
+  ========================*/
+  .form_container {
+    width: 300px;
+    padding: 30px;
+  }
+
+  .form_container input[type="text"] {
+    width: 240px;
+  }
+}
